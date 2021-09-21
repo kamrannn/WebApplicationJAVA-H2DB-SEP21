@@ -19,7 +19,7 @@
 </header>
 <br>
 
-<h1><%= "Hello World!" %>
+<h1><%= "Hello do you want to see our Java Trainees?" %>
 </h1>
 <br/>
 <a href="TraineesList">Click to see the Trainees List</a>
