@@ -13,7 +13,7 @@
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <div>
             <a href="http://localhost:8081/FirstWebApplicationJAVA_war_exploded/" class="navbar-brand"> Java
-                Trainees Management App </a>
+                Trainees Management App</a>
         </div>
     </nav>
 </header>
