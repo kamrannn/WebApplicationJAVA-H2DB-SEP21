@@ -1,5 +1,5 @@
 package com.example.firstwebapplicationjava;
-import javax.servlet.annotation.WebServlet;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ public class DatabaseConnection  {
         try{
             Class.forName("org.h2.Driver");
             conn = DriverManager.getConnection("jdbc:h2:~/test;", "sa", "");
-            System.out.println("Connection is Successfully Created");
+//            System.out.println("Connection is Successfully Created");
         }catch (Exception e){
             System.out.println("Connection not established");
         }
