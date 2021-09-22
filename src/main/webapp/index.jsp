@@ -15,72 +15,19 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark" style="background-color: tomato">
         <div>
-            <a href="https://www.javaguides.net" class="navbar-brand"> User
+            <a href="http://localhost:8081/FirstWebApplicationJAVA_war_exploded/" class="navbar-brand"> User
                 Management App </a>
         </div>
 
-        <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/TraineesList" class="nav-link">Users</a></li>
-        </ul>
+        <%--        <ul class="navbar-nav">
+                    <li><a href="<%=request.getContextPath()%>/TraineesList" class="nav-link">Trainees List</a></li>
+                </ul>--%>
     </nav>
 </header>
 <br>
-
-<div class="row">
-    <div class="container">
-        <h3 class="text-center">List of Users</h3>
-        <hr>
-        <br>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Age</th>
-                <th>Gender</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <c:forEach var="user" items="${listUser}">
-
-                <tr>
-                    <td>
-                        <c:out value="${user.id}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.firstName}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.lastName}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.email}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.age}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.gender}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.phoneNo}"/>
-                    </td>
-                    <td>
-                        <c:out value="${user.address}"/>
-                    </td>
-                </tr>
-            </c:forEach>
-            <!-- } -->
-            </tbody>
-
-        </table>
-    </div>
-</div>
+<li><a href="<%=request.getContextPath()%>/list">Trainees List</a></li>
+<a href="<%=request.getContextPath()%>/new" class="btn btn-success">Add
+    New User</a>
 </body>
 
 </html>
