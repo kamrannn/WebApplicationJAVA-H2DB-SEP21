@@ -1,49 +1,52 @@
 package com.example.firstwebapplicationjava;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(name = "ListOfUsers", value = "/TraineesList")
 public class TraineesServlet extends HttpServlet {
 
+    private TraineesDAO traineesDAO;
+
     public void init() {
+        traineesDAO = new TraineesDAO();
     }
 
-    //Printing all the Java Trainees in this method using PrintWriter
-    public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        PrintWriter out = res.getWriter();
-        res.setContentType("text/html");
-        out.println("<html><body>");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getServletPath();
+
         try {
-            Statement stmt = DatabaseConnection.getDbConnection().createStatement();
-            ResultSet resultSet = stmt.executeQuery("select * from TRAINEES");
-            out.println("<table border=1 width=50% height=50%>");
-            out.println("<tr><th>TraineeID</th><th>FirstName</th><th>LastName</th><th>Email</th><th>Age</th>" +
-                    "<th>Gender</th><th>PhoneNo</th><th>Address</th></tr>");
-            while (resultSet.next()) {
-                int id = resultSet.getInt("ID");
-                String firstName = resultSet.getString("FIRSTNAME");
-                String lastName = resultSet.getString("LASTNAME");
-                String email = resultSet.getString("EMAIL");
-                int age = resultSet.getInt("AGE");
-                String gender = resultSet.getString("GENDER");
-                String phoneNo = resultSet.getString("PHONENO");
-                String address = resultSet.getString("ADDRESS");
-                out.println("<tr><td>" + id + "</td><td>" + firstName + "</td><td>" + lastName + "</td><td>" + email
-                        + "</td><td>" + age + "</td><td>" + gender + "</td><td>" + phoneNo + "</td><td>" + address + "</td></tr>");
+            switch (action) {
+                case "/update":
+//                    updateUser(request, response);
+                    break;
+                default:
+                    listUser(request, response);
+                    break;
             }
-            out.println("</table>");
-            out.println("</html></body>");
-            DatabaseConnection.getDbConnection().close();
-        } catch (Exception e) {
-            out.println("error");
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
         }
+    }
+
+    private void listUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        List<JavaTrainees> listUser = traineesDAO.selectAllUsers();
+        request.setAttribute("listUser", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request, response);
     }
 }

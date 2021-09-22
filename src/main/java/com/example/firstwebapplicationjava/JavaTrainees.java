@@ -1,4 +1,3 @@
-/*
 package com.example.firstwebapplicationjava;
 
 public class JavaTrainees {
@@ -13,7 +12,7 @@ public class JavaTrainees {
 
     public JavaTrainees() {}
 
-    public JavaTrainees(String firstName,String lastName, String email, int age,String gender,String phoneNo, String address) {
+/*    public JavaTrainees(String firstName,String lastName, String email, int age,String gender,String phoneNo, String address) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,7 +21,7 @@ public class JavaTrainees {
         this.gender = gender;
         this.phoneNo = phoneNo;
         this.address = address;
-    }
+    }*/
 
     public JavaTrainees(int id, String firstName,String lastName, String email, int age,String gender,String phoneNo, String address) {
         super();
@@ -99,4 +98,4 @@ public class JavaTrainees {
     public void setEmail(String email) {
         this.email = email;
     }
-}*/
+}
