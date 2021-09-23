@@ -30,8 +30,7 @@
 </header>
 <br>
 <form action="<%=request.getContextPath()%>/update" method="post">
-    <p>ID.
-        <input value="<c:out value='${javaTrainees.id}' />" type="text" name="id"/></p>
+    <input value="<c:out value='${javaTrainees.id}' />" type="hidden" name="id"/>
     <p>FirstName.
         <input value="<c:out value='${javaTrainees.firstName}' />" type="text" name="firstname"/></p>
     <p>LastName.
