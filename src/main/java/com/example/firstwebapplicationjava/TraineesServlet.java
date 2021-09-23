@@ -36,11 +36,13 @@ public class TraineesServlet extends HttpServlet {
                 case "/insert":
                     insertUser(request, response);
                     break;
+                case "/delete":
+                    deleteUser(request, response);
+                    break;
                 case "/list":
                     listUser(request, response);
                     break;
                 default:
-//                    listUser(request, response);
                     System.out.println("Nothing returned from case");
                     break;
             }
@@ -72,10 +74,16 @@ public class TraineesServlet extends HttpServlet {
         String gender = request.getParameter("gender");
         String phoneNo = request.getParameter("phoneNo");
         String address = request.getParameter("address");
-//        boolean submitButtonPressed = request.getParameter("submit") != null;
 //        System.out.println(firstName+" "+lastName+" "+email+" "+age+" "+gender+" "+phoneNo+" "+address);
         JavaTrainees javaTrainees = new JavaTrainees(firstName, lastName, email, age, gender, phoneNo, address);
         traineesDAO.insertUser(javaTrainees);
+        response.sendRedirect("list");
+    }
+
+    private void deleteUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        traineesDAO.deleteUser(id);
         response.sendRedirect("list");
     }
 }

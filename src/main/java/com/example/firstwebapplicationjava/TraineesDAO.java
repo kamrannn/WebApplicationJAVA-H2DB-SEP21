@@ -9,6 +9,7 @@ import java.util.List;
 
 public class TraineesDAO {
     private static final String INSERT_USERS_SQL = "INSERT INTO TRAINEES (FIRSTNAME, LASTNAME, EMAIL, AGE, GENDER, PHONENO, ADDRESS) VALUES (?, ?, ?, ?, ?, ?, ?);";
+    private static final String DELETE_USERS_SQL = "delete from TRAINEES where id = ?;";
 
     public List<JavaTrainees> selectAllUsers() {
         List<JavaTrainees> trainees = new ArrayList<>();
@@ -57,5 +58,15 @@ public class TraineesDAO {
         } catch (SQLException e) {
             System.out.println(e.getClass());
         }
+    }
+
+    public boolean deleteUser(int id) throws SQLException {
+        boolean rowDeleted;
+        try (Connection connection = DatabaseConnection.getDbConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL)) {
+            statement.setInt(1, id);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
     }
 }

@@ -45,6 +45,7 @@
                 <th>Gender</th>
                 <th>Phone Number</th>
                 <th>Address</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -76,6 +77,9 @@
                     <td>
                         <c:out value="${user.address}"/>
                     </td>
+                        <%--                    <td><a href="edit?id=<%= value= '${user.id}'%> "></a></td>--%>
+                    <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
+                            href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
                 </tr>
             </c:forEach>
             <!-- } -->
