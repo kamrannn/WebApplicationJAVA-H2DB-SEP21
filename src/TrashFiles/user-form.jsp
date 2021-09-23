@@ -57,8 +57,8 @@
                     </c:if>
 
                     <fieldset class="form-group">
-                        <label>User Name</label> <input type="text" value="<c:out value='${javaTrainees.name}' />"
-                                                        class="form-control" name="name" required="required">
+                        <label>User Name</label> <input type="text" value="<c:out value='${javaTrainees.firstName}' />"
+                                                        class="form-control" name="firstName" required="required">
                     </fieldset>
 
                     <fieldset class="form-group">

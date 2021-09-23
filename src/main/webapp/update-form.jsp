@@ -1,21 +1,18 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: kamranabbasi
-  Date: 9/22/2021
-  Time: 3:36 PM
+  Date: 9/23/2021
+  Time: 11:57 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-
 <head>
     <title>Java Trainee Management</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
 <body>
 
 <header>
@@ -32,24 +29,25 @@
     </nav>
 </header>
 <br>
-<form action="<%=request.getContextPath()%>/insert" method="post">
+<form action="<%=request.getContextPath()%>/update" method="post">
+    <p>ID.
+        <input value="<c:out value='${javaTrainees.id}' />" type="text" name="id"/></p>
     <p>FirstName.
-        <input type="text" name="firstname"/></p>
+        <input value="<c:out value='${javaTrainees.firstName}' />" type="text" name="firstname"/></p>
     <p>LastName.
-        <input type="text" name="lastName"/></p>
+        <input value="<c:out value='${javaTrainees.lastName}' />" type="text" name="lastName"/></p>
     <p>Email.
-        <input type="text" name="email"/></p>
+        <input value="<c:out value='${javaTrainees.email}' />" type="text" name="email"/></p>
     <p>Age.
-        <input type="text" name="age"/></p>
+        <input value="<c:out value='${javaTrainees.age}' />" type="text" name="age"/></p>
     <p>Gender.
-        <input type="text" name="gender"/></p>
+        <input value="<c:out value='${javaTrainees.gender}' />" type="text" name="gender"/></p>
     <p>PhoneNo.
-        <input type="text" name="phoneNo"/></p>
+        <input value="<c:out value='${javaTrainees.phoneNo}' />" type="text" name="phoneNo"/></p>
     <p>Address.
-        <input type="text" name="address"/></p>
+        <input value="<c:out value='${javaTrainees.address}' />" type="text" name="address"/></p>
     <p>Submit button.
         <input type="submit" name="submit" value="submit"/></p>
 </form>
 </body>
-
 </html>

@@ -1,4 +1,5 @@
 package com.example.firstwebapplicationjava;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-//@WebServlet(name = "ListOfUsers", value = "/TraineesList")
 @WebServlet("/")
 public class TraineesServlet extends HttpServlet {
 
@@ -41,6 +41,12 @@ public class TraineesServlet extends HttpServlet {
                     break;
                 case "/list":
                     listUser(request, response);
+                    break;
+                case "/edit":
+                    showEditForm(request, response);
+                    break;
+                case "/update":
+                    updateUser(request, response);
                     break;
                 default:
                     System.out.println("Nothing returned from case");
@@ -74,7 +80,7 @@ public class TraineesServlet extends HttpServlet {
         String gender = request.getParameter("gender");
         String phoneNo = request.getParameter("phoneNo");
         String address = request.getParameter("address");
-//        System.out.println(firstName+" "+lastName+" "+email+" "+age+" "+gender+" "+phoneNo+" "+address);
+//        System.out.println(firstName + " " + lastName + " " + email + " " + age + " " + gender + " " + phoneNo + " " + address);
         JavaTrainees javaTrainees = new JavaTrainees(firstName, lastName, email, age, gender, phoneNo, address);
         traineesDAO.insertUser(javaTrainees);
         response.sendRedirect("list");
@@ -84,6 +90,33 @@ public class TraineesServlet extends HttpServlet {
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         traineesDAO.deleteUser(id);
+        response.sendRedirect("list");
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        JavaTrainees existingJavaTrainee = traineesDAO.selectUser(id);
+//        System.out.println(existingJavaTrainee.getFirstName() + " " + existingJavaTrainee.getLastName());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("update-form.jsp");
+        request.setAttribute("javaTrainees", existingJavaTrainee);
+        dispatcher.forward(request, response);
+
+    }
+
+    private void updateUser(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String firstName = request.getParameter("firstname");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        int age = Integer.parseInt(request.getParameter("age"));
+        String gender = request.getParameter("gender");
+        String phoneNo = request.getParameter("phoneNo");
+        String address = request.getParameter("address");
+
+        JavaTrainees javaTrainees = new JavaTrainees(id, firstName, lastName, email, age, gender, phoneNo, address);
+        traineesDAO.updateUser(javaTrainees);
         response.sendRedirect("list");
     }
 }
